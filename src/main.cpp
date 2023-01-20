@@ -7,6 +7,7 @@
 
 
 #include "uart.h"
+#include "gpiorasp.h"
 
 void stop_program(int exit_code){
     stop_UART();
@@ -51,8 +52,11 @@ int main ()
     };
 
     init_UART();
+    turn_off_vent();
+    turn_off_resis();
 
-    get_temp_(0xC1);
+
+    // get_temp_(0xC1);
 
     return 0;
 }
