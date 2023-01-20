@@ -1,10 +1,20 @@
 #include <wiringPi.h>
 #include <cstdlib>
 #include <cstring>
-#include <time.h>
 #include <signal.h>
 #include <iostream>
 
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string>
+#include <string.h>
+#include <unistd.h>  //Used for UART
+#include <fcntl.h>   //Used for UART
+#include <termios.h>
+
+#include "crc16.h"
 
 #include "uart.h"
 #include "gpiorasp.h"
@@ -27,17 +37,18 @@ void get_temp_(int sub_codigo){
     *p_buffer++ = (char) 9;
     *p_buffer++ = (char) 2;
 
-    printf("Buffers de memória criados!\n");
+    conf_crc(buffer, 9);
 
     send_message(&buffer[0], 9);
 
-    // sleep(1);
+    sleep(1);
 
     unsigned char *resposta_buffer = receive_message();
-    // int resposta_tam = conta_bytes_lidos(resposta_buffer);
-    float resposta;
-    memcpy(&resposta, resposta_buffer+3, 4);
 
+    float resposta;
+
+    memcpy(&resposta, resposta_buffer + 3, 4);
+    
     printf("A temperatura recebida foi: %f\n", resposta);
 
     free(resposta_buffer);
@@ -56,7 +67,7 @@ int main ()
     turn_off_resis();
 
 
-    // get_temp_(0xC1);
+    get_temp_(0xC1);
 
     return 0;
 }

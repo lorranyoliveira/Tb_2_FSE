@@ -42,8 +42,6 @@ void send_message(unsigned char *buffer, int size){
 
     printf("Escrevendo caracteres na UART ...");
 
-    conf_crc(buffer, 13);
-
     int count = write(result, &buffer[0], size);
 
     if (count < 0)
@@ -67,7 +65,8 @@ unsigned char *receive_message(){
 
     rx_buffer = (unsigned char *) malloc(256 * sizeof(unsigned char));
 
-    int rx_length = read(result, (void*)rx_buffer, 255);      
+    int rx_length = read(result, (void*)rx_buffer, 255);    
+
     if (rx_length < 0)
     {
         printf("Erro na leitura.\n"); 
