@@ -3,6 +3,8 @@
 #include <iostream>
 #include <ctime>
 
+#include "log.h"
+
 static std::string file_name = "./log.csv";
 static std::ofstream file;
 

@@ -8,6 +8,7 @@
 static int result = -1;
 
 #include "crc16.h"
+#include "uart.h"
 
 void init_UART()
 {
