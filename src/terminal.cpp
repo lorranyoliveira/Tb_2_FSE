@@ -12,7 +12,7 @@
 
 
 void terminal_() {
-    double valor;
+    float valor;
     printf("Informe um valor para temperatura de referencia: ");
     scanf("%f", &valor);
     

@@ -89,7 +89,7 @@ double get_temp_(int sub_codigo){
     p_buffer = &buffer[0];
     *p_buffer++ = (char) 0x01;
     *p_buffer++ = (char) 0x23;
-    *p_buffer++ = (char) 0xC1;
+    *p_buffer++ = (char) sub_codigo;
     *p_buffer++ = (char) 3;
     *p_buffer++ = (char) 9;
     *p_buffer++ = (char) 9;
@@ -112,7 +112,7 @@ double get_temp_(int sub_codigo){
     return resposta;
 }
 
-double send_temp_(int sub_codigo){
+double send_temp_(int sub_codigo, float temperatura){
     unsigned char buffer[9];
     unsigned char *p_buffer;
     p_buffer = &buffer[0];

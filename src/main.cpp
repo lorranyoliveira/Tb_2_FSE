@@ -64,7 +64,7 @@ void menu()
                 break;
             case 3:
                 break;
-            case 9:
+            case 0:
                 return;
                 break;
             default:
