@@ -20,11 +20,11 @@ void potenciometro_() {
 
     while(1)
     {
-        temp_referencia = get_temp_(0xC2);
+        temp_referencia = get_info(0xC2, 0x23);
 
         pid_atualiza_referencia(temp_referencia);
         
-        temp_interna = get_temp_(0xC1);
+        temp_interna = get_info(0xC1, 0x23);
 
         intensidade = pid_controle(temp_interna);
 

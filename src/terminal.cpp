@@ -25,7 +25,7 @@ void terminal_() {
     {
         pid_atualiza_referencia(valor);
         
-        temp_interna = get_temp_(0xC1);
+        temp_interna = get_info(0xC1, 0x23);
 
         intensidade = pid_controle(temp_interna);
 

@@ -5,7 +5,6 @@ void init_UART();
 void stop_UART();
 void send_message(unsigned char *buffer, int size);
 unsigned char *receive_message();
-double get_temp_(int sub_codigo);
-void send_temp_(int sub_codigo, float temperatura);
+double get_info(int sub_codigo, int codigo);
 
 #endif /* UART_H_ */

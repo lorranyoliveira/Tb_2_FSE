@@ -85,12 +85,12 @@ unsigned char *receive_message(){
     return rx_buffer;
 }
 
-double get_temp_(int sub_codigo){
+double get_info(int sub_codigo, int codigo){
     unsigned char buffer[9];
     unsigned char *p_buffer;
     p_buffer = &buffer[0];
     *p_buffer++ = (char) 0x01;
-    *p_buffer++ = (char) 0x23;
+    *p_buffer++ = (char) codigo;
     *p_buffer++ = (char) sub_codigo;
     *p_buffer++ = (char) 3;
     *p_buffer++ = (char) 9;
