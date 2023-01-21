@@ -12,6 +12,7 @@
 #include "uart.h"
 #include "gpiorasp.h"
 #include "log.h"
+#include "potenciometro.h"
 
 
 void stop_program(int exit_code);
@@ -50,7 +51,7 @@ void menu()
         printf("Menu principal:\n");
         printf("1 - Terminal:\n");
         printf("2 - Modo Curva:\n");
-        printf("3 - Terminal:\n");
+        printf("3 - Potenciometro:\n");
         printf("0 - Sair:\n");
         printf("Selecione uma das opções acima: ");
         scanf(" %d", &opcao);
@@ -63,6 +64,7 @@ void menu()
             case 2:
                 break;
             case 3:
+                potenciometro_();
                 break;
             case 0:
                 return;
