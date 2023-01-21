@@ -82,3 +82,50 @@ unsigned char *receive_message(){
 
     return rx_buffer;
 }
+
+double get_temp_(int sub_codigo){
+    unsigned char buffer[9];
+    unsigned char *p_buffer;
+    p_buffer = &buffer[0];
+    *p_buffer++ = (char) 0x01;
+    *p_buffer++ = (char) 0x23;
+    *p_buffer++ = (char) 0xC1;
+    *p_buffer++ = (char) 3;
+    *p_buffer++ = (char) 9;
+    *p_buffer++ = (char) 9;
+    *p_buffer++ = (char) 2;
+
+    conf_crc(buffer, 9);
+
+    send_message(&buffer[0], 9);
+
+    sleep(1);
+
+    unsigned char *resposta_buffer = receive_message();
+
+    float resposta;
+
+    memcpy(&resposta, resposta_buffer + 3, 4);
+    
+    free(resposta_buffer);
+
+    return resposta;
+}
+
+double send_temp_(int sub_codigo){
+    unsigned char buffer[9];
+    unsigned char *p_buffer;
+    p_buffer = &buffer[0];
+    *p_buffer++ = (char) 0x01;
+    *p_buffer++ = (char) 0x23;
+    *p_buffer++ = (char) 0xC1;
+    *p_buffer++ = (char) 3;
+    *p_buffer++ = (char) 9;
+    *p_buffer++ = (char) 9;
+    *p_buffer++ = (char) 2;
+
+    conf_crc(buffer, 9);
+
+    send_message(&buffer[0], 9);
+
+}

@@ -120,7 +120,7 @@ typedef struct
 
 } bme280_raw_data;
 
-
+float getTemp_Ambiente();
 void readCalibrationData(int fd, bme280_calib_data *cal);
 int32_t getTemperatureCalibration(bme280_calib_data *cal, int32_t adc_T);
 float compensateTemperature(int32_t t_fine);

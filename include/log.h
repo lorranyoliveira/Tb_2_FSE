@@ -5,6 +5,6 @@
 
 void create_file_log();
 void close_file_log();
-void write_in_file_log(std::string message);
+void write_in_file_log(float temp_interna, float temp_ambiente, float temp_referencia);
 
 #endif /* PID_H_ */
