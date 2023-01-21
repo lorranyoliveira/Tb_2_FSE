@@ -2,9 +2,11 @@
 #include <stdlib.h>
 #include <string>
 #include <string.h>
+#include <unistd.h>
+
+
 #include "uart.h"
 #include "pid.h"
-
 #include "gpiorasp.h"
 #include "terminal.h"
 #include "bme280.h"
@@ -17,6 +19,7 @@ void terminal_() {
     scanf("%f", &valor);
     
     double temp_interna, temp_ambiente, intensidade;
+
 
     while(1)
     {
@@ -36,6 +39,7 @@ void terminal_() {
         printf("Temperatura interna: %f\n", temp_interna);
         printf("Temperatura ambiente: %f\n", temp_ambiente);
         printf("Temperatura referencia: %f\n", valor);
+        sleep(2);
 
     }
 

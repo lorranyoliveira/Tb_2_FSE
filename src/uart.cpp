@@ -4,6 +4,7 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <termios.h>
+#include <cstdint>
 
 static int result = -1;
 
@@ -112,20 +113,28 @@ double get_temp_(int sub_codigo){
     return resposta;
 }
 
-double send_temp_(int sub_codigo, float temperatura){
-    unsigned char buffer[9];
+void send_temp_(int sub_codigo, float temperatura){
+    unsigned char buffer[11];
     unsigned char *p_buffer;
     p_buffer = &buffer[0];
     *p_buffer++ = (char) 0x01;
-    *p_buffer++ = (char) 0x23;
-    *p_buffer++ = (char) 0xC1;
+    *p_buffer++ = (char) 0x16;
+    *p_buffer++ = (char) sub_codigo;
     *p_buffer++ = (char) 3;
     *p_buffer++ = (char) 9;
     *p_buffer++ = (char) 9;
     *p_buffer++ = (char) 2;
 
-    conf_crc(buffer, 9);
+    uint8_t bytes[4];
+    memcpy(bytes, &temperatura, sizeof(&temperatura));
 
-    send_message(&buffer[0], 9);
+    *p_buffer++ = (char)bytes[0];
+    *p_buffer++ = (char)bytes[1];
+    *p_buffer++ = (char)bytes[2];
+    *p_buffer++ = (char)bytes[3];
+    
+    conf_crc(buffer, 13);
+
+    send_message(&buffer[0], 13);
 
 }
