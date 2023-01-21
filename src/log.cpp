@@ -2,7 +2,6 @@
 #include <string>
 #include <iostream>
 #include <ctime>
-
 #include "log.h"
 
 static std::string file_name = "./log.csv";
@@ -33,6 +32,6 @@ void write_in_file_log(float temp_interna, float temp_ambiente, float temp_refer
     std::time_t result = std::time(nullptr);
     std::string time_now = std::asctime(std::localtime(&result));
 
-    file << time_now << temp_interna << ',' << temp_ambiente << ',' << temp_referencia << '\n';;
+    file << "data/time: "<< time_now <<',' << "temperatura interna: " <<  temp_interna << ',' << "temperatura ambiente: "<< temp_ambiente << ',' << "temperatura de referencia: " << temp_referencia << std::endl;
 
 }
