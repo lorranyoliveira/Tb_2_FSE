@@ -18,12 +18,15 @@
 void stop_program(int exit_code);
 void menu();
 void menu_altera_pid();
+void turn_off_system();
+void turn_on_system();
 
 void teste() {
     while(1){
-        printf("valor : %d \n", set_info(0xD5, 0x16, 1));
+        printf("valor : %f \n", get_info(0xC3, 0x23));
     }
 }
+
 int main ()
 {
     signal(SIGINT, stop_program);
@@ -36,6 +39,7 @@ int main ()
     turn_off_vent();
     turn_off_resis();
     create_file_log();
+    turn_off_system();
 
     menu();
 
@@ -51,6 +55,7 @@ void stop_program(int exit_code){
 
 void menu()
 {
+    turn_on_system();
     while(1)
     {
         int opcao = -1;
@@ -58,8 +63,8 @@ void menu()
         printf("Menu principal:\n");
         printf("1 - Ligar em modo Curva\n");
         printf("2 - Ligar em modo manual (Potenciometro)\n");
-        printf("0 - Sair:\n");
-        printf("Selecione uma das opções acima ");
+        printf("0 - Sair\n");
+        printf("Selecione uma das opções acima: ");
         scanf(" %d", &opcao);
 
         switch (opcao)
@@ -101,5 +106,17 @@ void menu_altera_pid(){
             default:
                 menu_altera_pid();
         }
+
+}
+
+void turn_off_system(){
+    set_info(0xD5, 0x16, 0);
+    set_info(0xD3, 0x16, 0);
+
+}
+
+void turn_on_system(){
+    set_info(0xD3, 0x16, 1);
+    set_info(0xD5, 0x16, 1);
 
 }
