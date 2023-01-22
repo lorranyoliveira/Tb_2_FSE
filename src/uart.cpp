@@ -42,8 +42,6 @@ void send_message(unsigned char *buffer, int size){
         exit(1);
     }
 
-    printf("Escrevendo caracteres na UART ...");
-
     int count = write(result, &buffer[0], size);
 
     if (count < 0)
@@ -112,4 +110,32 @@ double get_info(int sub_codigo, int codigo){
     free(resposta_buffer);
 
     return resposta;
+}
+
+int set_info(int sub_codigo, int codigo, int state)
+{
+    unsigned char buffer[13];
+    unsigned char *p_buffer;
+    p_buffer = &buffer[0];
+    *p_buffer++ = (char)0x01;
+    *p_buffer++ = (char)codigo;
+    *p_buffer++ = (char)sub_codigo;
+    *p_buffer++ = (char)3;
+    *p_buffer++ = (char)9;
+    *p_buffer++ = (char)9;
+    *p_buffer++ = (char)2;
+    *p_buffer++ = (char) state;
+
+    conf_crc(buffer, 10);
+
+    send_message(&buffer[0], 10);
+
+    sleep(1);
+
+    unsigned char *resposta_buffer = receive_message();
+    int resposta;
+    memcpy(&resposta, resposta_buffer + 3, 4);
+    free(resposta_buffer);
+    return resposta;
+
 }
