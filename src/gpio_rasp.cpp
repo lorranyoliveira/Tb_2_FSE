@@ -13,9 +13,9 @@ void turn_on_vent(int valor_pwm)
 
 void turn_on_resis(int valor_pwm)
 {
-    pinMode(23, OUTPUT);
-    softPwmCreate(23, 0, 100);
-    softPwmWrite(23, valor_pwm);
+    pinMode(4, OUTPUT);
+    softPwmCreate(4, 0, 100);
+    softPwmWrite(4, valor_pwm);
 }
 
 void turn_off_vent()
@@ -27,9 +27,9 @@ void turn_off_vent()
 
 void turn_off_resis()
 {
-    pinMode(23, OUTPUT);
-    softPwmCreate(23, 0, 100);
-    softPwmWrite(23, 0);
+    pinMode(4, OUTPUT);
+    softPwmCreate(4, 0, 100);
+    softPwmWrite(4, 0);
 }
 
 void control_temp(int intensidade)
