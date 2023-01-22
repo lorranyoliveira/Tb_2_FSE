@@ -32,6 +32,8 @@ void write_in_file_log(float temp_interna, float temp_ambiente, float temp_refer
     std::time_t result = std::time(nullptr);
     std::string time_now = std::asctime(std::localtime(&result));
 
-    file << "data/time: "<< time_now <<',' << "temperatura interna: " <<  temp_interna << ',' << "temperatura ambiente: "<< temp_ambiente << ',' << "temperatura de referencia: " << temp_referencia << std::endl;
+    file<<"data/time, temperatura_interna, temperatura_ambiente, temperatura_referencia"<<std::endl;
+
+    file << time_now <<',' <<  temp_interna << ',' << temp_ambiente << ',' << temp_referencia << std::endl;
 
 }

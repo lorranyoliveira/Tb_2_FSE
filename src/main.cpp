@@ -13,6 +13,7 @@
 #include "gpiorasp.h"
 #include "log.h"
 #include "potenciometro.h"
+#include "curva.h"
 
 
 void stop_program(int exit_code);
@@ -20,12 +21,6 @@ void menu();
 void menu_altera_pid();
 void turn_off_system();
 void turn_on_system();
-
-void teste() {
-    while(1){
-        printf("valor : %f \n", get_info(0xC3, 0x23));
-    }
-}
 
 int main ()
 {
@@ -58,6 +53,7 @@ void menu()
     turn_on_system();
     while(1)
     {
+        system("clear");
         int opcao = -1;
         printf("-------------------------------------------------------\n");
         printf("Menu principal:\n");
@@ -70,7 +66,8 @@ void menu()
         switch (opcao)
         {
             case 1:
-                teste();
+                menu_altera_pid();
+                temp_curva();
                 break;
             case 2:
                 menu_altera_pid();
