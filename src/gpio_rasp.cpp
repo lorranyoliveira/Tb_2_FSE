@@ -6,9 +6,9 @@
 
 void turn_on_vent(int valor_pwm)
 {
-    pinMode(24, OUTPUT);
-    softPwmCreate(24, 0, 100);
-    softPwmWrite(24, valor_pwm);
+    pinMode(5, OUTPUT);
+    softPwmCreate(5, 0, 100);
+    softPwmWrite(5, valor_pwm);
 }
 
 void turn_on_resis(int valor_pwm)
@@ -20,9 +20,9 @@ void turn_on_resis(int valor_pwm)
 
 void turn_off_vent()
 {
-    pinMode(24, OUTPUT);
-    softPwmCreate(24, 0, 100);
-    softPwmWrite(24, 0);
+    pinMode(5, OUTPUT);
+    softPwmCreate(5, 0, 100);
+    softPwmWrite(5, 0);
 }
 
 void turn_off_resis()
