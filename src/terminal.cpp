@@ -14,16 +14,22 @@
 
 
 void terminal_() {
-    float valor;
-    printf("Informe um valor para temperatura de referencia: ");
-    scanf("%f", &valor);
-    
-    double temp_interna, temp_ambiente, intensidade;
+    system("clear");
+    float kp, ki, kd;
+    printf("Digite o valor para Kp Ki e Kp, respectivamente: ");
+    scanf("%f %f %f", &kp, &ki, &kd);
 
+    printf("valores:  %f %f %f", kp, ki, kd);
+
+    double temp_interna, temp_ambiente, intensidade, temp_referencia;
+
+    pid_configura_constantes(kp, ki, kd);
 
     while(1)
     {
-        pid_atualiza_referencia(valor);
+        temp_referencia = get_info(0xC2, 0x23);
+
+        pid_atualiza_referencia(temp_referencia);
         
         temp_interna = get_info(0xC1, 0x23);
 
@@ -33,15 +39,16 @@ void terminal_() {
 
         temp_ambiente = getTemp_Ambiente();
 
-        write_in_file_log(temp_interna, temp_ambiente, valor);        
+        write_in_file_log(temp_interna, temp_ambiente, temp_referencia);        
 
         system("clear");
         printf("Temperatura interna: %f\n", temp_interna);
         printf("Temperatura ambiente: %f\n", temp_ambiente);
-        printf("Temperatura referencia: %f\n", valor);
+        printf("Temperatura referencia: %f\n", temp_referencia);
         sleep(2);
 
     }
+
 
 
 }

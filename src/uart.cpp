@@ -48,10 +48,6 @@ void send_message(unsigned char *buffer, int size){
     {
         printf("erro\n");
     }
-    else
-    {
-        printf(" %d bytes escrito.\n", count);
-    }
 
 }
 
