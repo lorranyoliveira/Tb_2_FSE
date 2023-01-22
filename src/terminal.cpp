@@ -19,8 +19,6 @@ void terminal_() {
     printf("Digite o valor para Kp Ki e Kp, respectivamente: ");
     scanf("%f %f %f", &kp, &ki, &kd);
 
-    printf("valores:  %f %f %f", kp, ki, kd);
-
     double temp_interna, temp_ambiente, intensidade, temp_referencia;
 
     pid_configura_constantes(kp, ki, kd);
